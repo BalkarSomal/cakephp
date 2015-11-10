@@ -20,7 +20,7 @@
                                     'label' =>'Toppings',
                                     'type' => 'select',
                                     'multiple'=>'checkbox',
-                                    'options'=> array( 'ham'=>'Ham', 'tomato'=>'Tomatoes', 'onion'=>'Red Onions', 'pepper'=>'Green Peppers','mushroom'=>'Fresh Mushrooms','meat'=>'pepperoni')));
+                                    'options'=> array( 'ham'=>'Ham', 'tomato'=>'Tomatoes',                                           'onion'=>'Red Onions', 'pepper'=>'Green                                                         Peppers','mushroom'=>'Fresh Mushrooms','meat'=>'pepperoni')));
             echo $this->Form->input('Address');
             echo $this->Form->input('City');
             echo $this->Form->input('PostalCode');
