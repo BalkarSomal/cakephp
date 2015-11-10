@@ -11,6 +11,11 @@ use Cake\ORM\Entity;
  * @property int $Quantity
  * @property string $crustType
  * @property string $Toppings
+ * @property string $Address
+ * @property string $City
+ * @property string $PostalCode
+ * @property string $PhoneNumber
+ * @property string $Delivery_or_Pickup
  */
 class Pizza extends Entity
 {

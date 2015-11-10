@@ -23,6 +23,26 @@
             <td><?= h($pizza->Toppings) ?></td>
         </tr>
         <tr>
+            <th><?= __('Address') ?></th>
+            <td><?= h($pizza->Address) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('City') ?></th>
+            <td><?= h($pizza->City) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('PostalCode') ?></th>
+            <td><?= h($pizza->PostalCode) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('PhoneNumber') ?></th>
+            <td><?= h($pizza->PhoneNumber) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Delivery Or Pickup') ?></th>
+            <td><?= h($pizza->Delivery_or_Pickup) ?></td>
+        </tr>
+        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($pizza->id) ?></td>
         </tr>

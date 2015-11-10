@@ -55,6 +55,21 @@ class PizzaTable extends Table
         $validator
             ->allowEmpty('Toppings');
 
+        $validator
+            ->allowEmpty('Address');
+
+        $validator
+            ->allowEmpty('City');
+
+        $validator
+            ->allowEmpty('PostalCode');
+
+        $validator
+            ->allowEmpty('PhoneNumber');
+
+        $validator
+            ->allowEmpty('Delivery_or_Pickup');
+
         return $validator;
     }
 }

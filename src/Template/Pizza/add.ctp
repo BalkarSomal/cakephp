@@ -13,9 +13,13 @@
             echo $this->Form->input('Quantity');
             echo $this->Form->input('crustType');
             echo $this->Form->input('Toppings');
+            echo $this->Form->input('Address');
+            echo $this->Form->input('City');
+            echo $this->Form->input('PostalCode');
+            echo $this->Form->input('PhoneNumber');
+            echo $this->Form->input('Delivery_or_Pickup');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->button(__('Reset')) ?>
     <?= $this->Form->end() ?>
 </div>
