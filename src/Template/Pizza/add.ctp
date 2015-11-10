@@ -9,17 +9,28 @@
     <fieldset>
         <legend><?= __('Add Pizza') ?></legend>
         <?php
-            echo $this->Form->input('PizzaSize');
+            echo $this->Form->input('PizzaSize',array(
+                                   'options' => array('Small','Medium','Large','X-Large'),
+                                   'empty' => 'Select Size'));
             echo $this->Form->input('Quantity');
-            echo $this->Form->input('crustType');
-            echo $this->Form->input('Toppings');
+            echo $this->Form->input('crustType',array(
+                                    'options' => array('Thin Crust','Hand Tossed','Cheesy                                           Crust','Gluten Free'),
+                                    'empty' => 'Select Crust'));
+            echo $this->Form->input('Toppings', array(
+                                    'label' =>'Toppings',
+                                    'type' => 'select',
+                                    'multiple'=>'checkbox',
+                                    'options'=> array( 'ham'=>'Ham', 'tomato'=>'Tomatoes', 'onion'=>'Red Onions', 'pepper'=>'Green Peppers','mushroom'=>'Fresh Mushrooms','meat'=>'pepperoni')));
             echo $this->Form->input('Address');
             echo $this->Form->input('City');
             echo $this->Form->input('PostalCode');
             echo $this->Form->input('PhoneNumber');
-            echo $this->Form->input('Delivery_or_Pickup');
+            echo $this->Form->input('Delivery_or_Pickup',array(
+                                    'options' => array('Delivery','Pick-Up'),
+                                    'empty' => 'Select Type of Order'));
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Reset')) ?>
     <?= $this->Form->end() ?>
 </div>
