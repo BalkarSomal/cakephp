@@ -49,6 +49,16 @@ class ArticlesTable extends Table
 
         $validator
             ->allowEmpty('body');
+        
+        
+        
+        
+        $validator
+            ->notEmpty('title')
+            ->requirePresence('title')
+            ->notEmpty('body')
+            ->requirePresence('body');
+
 
         return $validator;
     }

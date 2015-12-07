@@ -18,8 +18,11 @@ class ArticlesController extends AppController
      */
     public function index()
     {
+        $articles = $this->Articles->find('all');
+        $this->set(compact('articles'));
         $this->set('articles', $this->paginate($this->Articles));
         $this->set('_serialize', ['articles']);
+        $this->set('articles', $this->Articles->find('all'));
     }
 
     /**
@@ -31,11 +34,11 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
-        $article = $this->Articles->get($id, [
-            'contain' => []
-        ]);
+        $article = $this->Articles->get($id, ['contain' => [] ]);
         $this->set('article', $article);
         $this->set('_serialize', ['article']);
+        $article = $this->Articles->get($id);
+        $this->set(compact('article'));
     }
 
     /**
@@ -54,6 +57,7 @@ class ArticlesController extends AppController
             } else {
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
             }
+            $this->set('article', $article);
         }
         $this->set(compact('article'));
         $this->set('_serialize', ['article']);
@@ -68,18 +72,22 @@ class ArticlesController extends AppController
      */
     public function edit($id = null)
     {
-        $article = $this->Articles->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
+        $article = $this->Articles->get($id, ['contain' => [] ]);
+        if ($this->request->is(['patch', 'post', 'put'])) 
+        {
             $article = $this->Articles->patchEntity($article, $this->request->data);
-            if ($this->Articles->save($article)) {
+            if ($this->Articles->save($article)) 
+            {
                 $this->Flash->success(__('The article has been saved.'));
                 return $this->redirect(['action' => 'index']);
-            } else {
+            } 
+            else 
+            {
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
             }
+            $this->set('article', $article);
         }
+        
         $this->set(compact('article'));
         $this->set('_serialize', ['article']);
     }
@@ -101,5 +109,13 @@ class ArticlesController extends AppController
             $this->Flash->error(__('The article could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+    
+    
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('Flash'); // Include the FlashComponent
     }
 }
