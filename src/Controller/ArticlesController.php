@@ -73,6 +73,7 @@ class ArticlesController extends AppController
     public function edit($id = null)
     {
         $article = $this->Articles->get($id, ['contain' => [] ]);
+        $article = $this->Articles->get($id);
         if ($this->request->is(['patch', 'post', 'put'])) 
         {
             $article = $this->Articles->patchEntity($article, $this->request->data);
@@ -85,9 +86,9 @@ class ArticlesController extends AppController
             {
                 $this->Flash->error(__('The article could not be saved. Please, try again.'));
             }
-            $this->set('article', $article);
+            
         }
-        
+        $this->set('article', $article);
         $this->set(compact('article'));
         $this->set('_serialize', ['article']);
     }
@@ -104,7 +105,7 @@ class ArticlesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $article = $this->Articles->get($id);
         if ($this->Articles->delete($article)) {
-            $this->Flash->success(__('The article has been deleted.'));
+            $this->Flash->success(__('The article with id: {0} has been deleted.', h($id)));
         } else {
             $this->Flash->error(__('The article could not be deleted. Please, try again.'));
         }
