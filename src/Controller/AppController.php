@@ -33,17 +33,37 @@ class AppController extends Controller
      *
      * Use this method to add common initialization code like loading components.
      *
-     * e.g. `$this->loadComponent('Security');`
+     * e.g. `$this->loadComponent('Security');
      *
      * @return void
      */
-    public function initialize()
-    {
-        parent::initialize();
+public function initialize()
+{
+    $this->loadComponent('Flash');
+    $this->loadComponent('Auth', [
+        'authorize' => ['Controller'], // Added this line
+        'loginRedirect' => [
+            'controller' => 'Articles',
+            'action' => 'index'
+        ],
+        'logoutRedirect' => [
+            'controller' => 'Pages',
+            'action' => 'display',
+            'home'
+        ]
+    ]);
+}
 
-        $this->loadComponent('RequestHandler');
-        $this->loadComponent('Flash');
+public function isAuthorized($user)
+{
+    // Admin can access every action
+    if (isset($user['role']) && $user['role'] === 'admin') {
+        return true;
     }
+
+    // Default deny
+    return false;
+}
 
     /**
      * Before render callback.
@@ -58,5 +78,10 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+    
+     public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view', 'display']);
     }
 }
